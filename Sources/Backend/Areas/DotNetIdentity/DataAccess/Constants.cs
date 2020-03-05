@@ -1,4 +1,4 @@
-﻿namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity
+﻿namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess
 {
     public static class Constants
     {

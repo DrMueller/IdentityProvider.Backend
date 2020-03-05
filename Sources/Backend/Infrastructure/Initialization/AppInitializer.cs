@@ -16,20 +16,9 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
         {
             InitializeDatabases(app);
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
-
-            //app.UseHttpsRedirection();
             app.UseRouting();
             app.UseIdentityServer();
+            app.UseAuthorization();
 
             app.UseEndpoints(
                 endpoints =>

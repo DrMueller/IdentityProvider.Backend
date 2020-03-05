@@ -1,1 +1,6 @@
 - Abgeleitete DbContexts
+- SeedData ausgereifter machen
+
+- Dokumentieren: https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation
+
+- Dokumentieren: Templates

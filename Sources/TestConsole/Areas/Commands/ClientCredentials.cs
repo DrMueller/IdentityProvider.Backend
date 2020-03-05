@@ -54,7 +54,7 @@ namespace Mmu.IdentityProvider.TestConsole.Areas.Commands
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.GetAsync("http://localhost:5001/identity/write");
+            var response = await apiClient.GetAsync("http://localhost:5000/api/accounts");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);

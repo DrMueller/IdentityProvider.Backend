@@ -1,5 +1,6 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,11 +20,24 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
 
             InitializeAspNetIdentity(services, connectionString);
             InitializeIdentityServer(services, connectionString);
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            InitializeIdentityClient(services);
 
             services.AddControllers();
+        }
+
+        // This method initializes the WebApi as it's own 'Client'
+        // Therefore, if an access token is sent, we check if we can use it, even if we gave it to the client anyway =/
+        private static void InitializeIdentityClient(IServiceCollection services)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(
+                    JwtBearerDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.Authority = "http://localhost:5000";
+                        options.RequireHttpsMetadata = false;
+                        options.ApiName = "CoolWebApi";
+                    });
         }
 
         private static void InitializeAspNetIdentity(IServiceCollection services, string connectionString)
