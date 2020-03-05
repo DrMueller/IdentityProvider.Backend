@@ -31,7 +31,6 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(
-                    JwtBearerDefaults.AuthenticationScheme,
                     options =>
                     {
                         options.Authority = "http://localhost:5000";
