@@ -37,7 +37,7 @@ namespace Mmu.IdentityProvider.TestConsole.Areas.Commands
                 new ClientCredentialsTokenRequest
                 {
                     Address = disco.TokenEndpoint,
-                    ClientId = "CoolClient",
+                    ClientId = "ConsoleClient",
                     ClientSecret = "secret",
                     Scope = "api.write"
                 });

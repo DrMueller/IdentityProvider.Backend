@@ -1,9 +1,12 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
+﻿using System.IdentityModel.Tokens.Jwt;
+using IdentityServer4.EntityFramework.DbContexts;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.DbContexts;
 using Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess;
 using Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAccess.DbContexts;
@@ -15,10 +18,13 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
         public static void Initialize(IApplicationBuilder app, IWebHostEnvironment env)
         {
             InitializeDatabases(app);
-
+            app.UseCors("All");
             app.UseRouting();
-            app.UseIdentityServer();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseIdentityServer();
+
+            IdentityModelEventSource.ShowPII = true;
 
             app.UseEndpoints(
                 endpoints =>

@@ -1,5 +1,7 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.IdentityModel.Tokens.Jwt;
+using IdentityServer4.EntityFramework.DbContexts;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,8 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
     {
         public static void Initialize(IServiceCollection services, IConfiguration config)
         {
+            InitializeCors(services);
+
             var connectionString = config.GetConnectionString("DefaultConnection");
 
             InitializeAspNetIdentity(services, connectionString);
@@ -25,11 +29,28 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
             services.AddControllers();
         }
 
-        // This method initializes the WebApi as it's own 'Client'
-        // Therefore, if an access token is sent, we check if we can use it, even if we gave it to the client anyway =/
         private static void InitializeIdentityClient(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+            services.AddAuthentication(
+                    options =>
+                    {
+                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                    })
+                .AddCookie()
+                .AddOpenIdConnect(
+                    OpenIdConnectDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.Authority = "http://localhost:5000";
+                        options.RequireHttpsMetadata = false;
+                        options.ClientId = "AngularClient";
+                        options.ClientSecret = "secret";
+                        options.ResponseType = "code";
+                        options.SaveTokens = true;
+                    })
                 .AddIdentityServerAuthentication(
                     options =>
                     {
@@ -45,6 +66,12 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                 options =>
                     options.UseSqlServer(connectionString));
 
+            services.Configure<CookiePolicyOptions>(
+                options =>
+                {
+                    options.CheckConsentNeeded = context => false;
+                });
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
@@ -59,11 +86,28 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                         options.Events.RaiseInformationEvents = true;
                         options.Events.RaiseFailureEvents = true;
                         options.Events.RaiseSuccessEvents = true;
+                        options.UserInteraction.LoginUrl = "http://localhost:4200/account/login";
+                        options.UserInteraction.ErrorUrl = "http://localhost:4200/identity-errors/error-display";
                     })
                 .AddConfigurationStore(opt => ConfigStoreConfiguration.Configure(opt, connectionString))
                 .AddOperationalStore<PersistedGrantDbContext>(opt => OperationalStoreConfiguration.Configure(opt, connectionString))
-                .AddAspNetIdentity<ApplicationUser>()
-                .AddDeveloperSigningCredential();
+                .AddAspNetIdentity<ApplicationUser>();
+        }
+
+        private static void InitializeCors(IServiceCollection services)
+        {
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy(
+                        "All",
+                        builder =>
+                            builder
+                                .WithOrigins("http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials());
+                });
         }
     }
 }
