@@ -5,12 +5,11 @@ using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.DbContexts;
 
 namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Migrations
 {
     [DbContext(typeof(ConfigurationDbContext))]
-    partial class IdentityConfigDbContextModelSnapshot : ModelSnapshot
+    internal class IdentityConfigDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +20,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResource", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiResource",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,7 +65,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiResources");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResourceClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiResourceClaim",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,7 +89,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiClaims");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResourceProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiResourceProperty",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +118,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiProperties");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiScope", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiScope",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +162,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiScopes");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiScopeClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiScopeClaim",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,7 +186,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiScopeClaims");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiSecret", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiSecret",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,7 +225,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ApiSecrets");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.Client", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.Client",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -365,7 +378,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientClaim",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -392,7 +407,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientClaims");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientCorsOrigin", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientCorsOrigin",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -414,7 +431,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientCorsOrigins");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientGrantType", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientGrantType",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -436,7 +455,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientGrantTypes");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientIdPRestriction", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientIdPRestriction",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -458,7 +479,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientIdPRestrictions");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -480,7 +503,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientPostLogoutRedirectUris");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientProperty",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -507,7 +532,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientProperties");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientRedirectUri", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientRedirectUri",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -529,7 +556,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientRedirectUris");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientScope", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientScope",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -551,7 +580,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientScopes");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientSecret", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientSecret",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -588,7 +619,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("ClientSecrets");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.IdentityClaim",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -610,7 +643,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("IdentityClaims");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityResource", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.IdentityResource",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -659,7 +694,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("IdentityResources");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityResourceProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.IdentityResourceProperty",
+                b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -686,7 +723,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                     b.ToTable("IdentityProperties");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResourceClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiResourceClaim",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.ApiResource", "ApiResource")
                         .WithMany("UserClaims")
@@ -695,7 +734,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResourceProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiResourceProperty",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.ApiResource", "ApiResource")
                         .WithMany("Properties")
@@ -704,7 +745,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiScope", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiScope",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.ApiResource", "ApiResource")
                         .WithMany("Scopes")
@@ -713,7 +756,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiScopeClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiScopeClaim",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.ApiScope", "ApiScope")
                         .WithMany("UserClaims")
@@ -722,7 +767,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiSecret", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ApiSecret",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.ApiResource", "ApiResource")
                         .WithMany("Secrets")
@@ -731,7 +778,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientClaim",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("Claims")
@@ -740,7 +789,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientCorsOrigin", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientCorsOrigin",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("AllowedCorsOrigins")
@@ -749,7 +800,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientGrantType", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientGrantType",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("AllowedGrantTypes")
@@ -758,7 +811,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientIdPRestriction", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientIdPRestriction",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("IdentityProviderRestrictions")
@@ -767,7 +822,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("PostLogoutRedirectUris")
@@ -776,7 +833,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientProperty",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("Properties")
@@ -785,7 +844,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientRedirectUri", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientRedirectUri",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("RedirectUris")
@@ -794,7 +855,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientScope", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientScope",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("AllowedScopes")
@@ -803,7 +866,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ClientSecret", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.ClientSecret",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.Client", "Client")
                         .WithMany("ClientSecrets")
@@ -812,7 +877,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityClaim", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.IdentityClaim",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.IdentityResource", "IdentityResource")
                         .WithMany("UserClaims")
@@ -821,7 +888,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess.Mig
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityResourceProperty", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.IdentityResourceProperty",
+                b =>
                 {
                     b.HasOne("IdentityServer4.EntityFramework.Entities.IdentityResource", "IdentityResource")
                         .WithMany("Properties")

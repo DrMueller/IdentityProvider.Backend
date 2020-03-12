@@ -4,3 +4,16 @@
 - Dokumentieren: https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation
 
 - Dokumentieren: Templates
+
+IdentityServer4
+
+- AuthorizeResponseGenerator
+- AuthorizeCallbackEndpoint
+
+
+# Code
+
+- Consent
+- WebAPI trennen
+- Authentication Result
+- Client trennen

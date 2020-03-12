@@ -5,12 +5,11 @@ using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAccess.DbContexts;
 
 namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAccess.Migrations
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    partial class IdentityOperationalDbContextModelSnapshot : ModelSnapshot
+    internal class IdentityOperationalDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +20,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAcces
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.DeviceFlowCodes",
+                b =>
                 {
                     b.Property<string>("UserCode")
                         .HasColumnType("nvarchar(200)")
@@ -63,7 +64,9 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAcces
                     b.ToTable("DeviceCodes");
                 });
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.PersistedGrant", b =>
+            modelBuilder.Entity(
+                "IdentityServer4.EntityFramework.Entities.PersistedGrant",
+                b =>
                 {
                     b.Property<string>("Key")
                         .HasColumnType("nvarchar(200)")

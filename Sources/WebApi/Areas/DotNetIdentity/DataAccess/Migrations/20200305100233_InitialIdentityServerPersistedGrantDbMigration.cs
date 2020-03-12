@@ -5,17 +5,48 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
 {
     public partial class InitialIdentityServerPersistedGrantDbMigration : Migration
     {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                "AspNetRoleClaims",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetUserClaims",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetUserLogins",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetUserRoles",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetUserTokens",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetRoles",
+                "AspIdentity");
+
+            migrationBuilder.DropTable(
+                "AspNetUsers",
+                "AspIdentity");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "AspIdentity");
+                "AspIdentity");
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
+                "AspNetRoles",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
@@ -26,25 +57,25 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                "AspNetUsers",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    EmailConfirmed = table.Column<bool>(),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    PhoneNumberConfirmed = table.Column<bool>(),
+                    TwoFactorEnabled = table.Column<bool>(),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    LockoutEnabled = table.Column<bool>(),
+                    AccessFailedCount = table.Column<int>()
                 },
                 constraints: table =>
                 {
@@ -52,13 +83,13 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
+                "AspNetRoleClaims",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
@@ -66,8 +97,8 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
+                        "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        x => x.RoleId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
@@ -75,13 +106,13 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
+                "AspNetUserClaims",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
@@ -89,8 +120,8 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        x => x.UserId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -98,21 +129,21 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
+                "AspNetUserLogins",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(),
+                    ProviderKey = table.Column<string>(),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        x => x.UserId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -120,26 +151,26 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
+                "AspNetUserRoles",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(),
+                    RoleId = table.Column<string>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
+                        "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        x => x.RoleId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        x => x.UserId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -147,21 +178,21 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
+                "AspNetUserTokens",
                 schema: "AspIdentity",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(),
+                    LoginProvider = table.Column<string>(),
+                    Name = table.Column<string>(),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        x => x.UserId,
                         principalSchema: "AspIdentity",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -169,13 +200,13 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
+                "IX_AspNetRoleClaims_RoleId",
                 schema: "AspIdentity",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
+                "RoleNameIndex",
                 schema: "AspIdentity",
                 table: "AspNetRoles",
                 column: "NormalizedName",
@@ -183,67 +214,36 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.Migrations
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
+                "IX_AspNetUserClaims_UserId",
                 schema: "AspIdentity",
                 table: "AspNetUserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
+                "IX_AspNetUserLogins_UserId",
                 schema: "AspIdentity",
                 table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
+                "IX_AspNetUserRoles_RoleId",
                 schema: "AspIdentity",
                 table: "AspNetUserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "EmailIndex",
+                "EmailIndex",
                 schema: "AspIdentity",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
+                "UserNameIndex",
                 schema: "AspIdentity",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles",
-                schema: "AspIdentity");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers",
-                schema: "AspIdentity");
         }
     }
 }

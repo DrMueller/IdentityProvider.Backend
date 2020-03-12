@@ -44,7 +44,7 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                     OpenIdConnectDefaults.AuthenticationScheme,
                     options =>
                     {
-                        options.Authority = "http://localhost:5000";
+                        options.Authority = "https://localhost:44339";
                         options.RequireHttpsMetadata = false;
                         options.ClientId = "AngularClient";
                         options.ClientSecret = "secret";
@@ -54,7 +54,7 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                 .AddIdentityServerAuthentication(
                     options =>
                     {
-                        options.Authority = "http://localhost:5000";
+                        options.Authority = "https://localhost:44339";
                         options.RequireHttpsMetadata = false;
                         options.ApiName = "CoolWebApi";
                     });
@@ -91,7 +91,8 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                     })
                 .AddConfigurationStore(opt => ConfigStoreConfiguration.Configure(opt, connectionString))
                 .AddOperationalStore<PersistedGrantDbContext>(opt => OperationalStoreConfiguration.Configure(opt, connectionString))
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddDeveloperSigningCredential();
         }
 
         private static void InitializeCors(IServiceCollection services)

@@ -5,7 +5,12 @@ namespace Mmu.IdentityProvider.WebApi
 {
     public class Program
     {
-        public static IHostBuilder CreateHostBuilder(string[] args)
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(
@@ -13,11 +18,6 @@ namespace Mmu.IdentityProvider.WebApi
                     {
                         webBuilder.UseStartup<Startup>();
                     });
-        }
-
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
         }
     }
 }

@@ -5,23 +5,34 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAcces
 {
     public partial class InitialIdentityServerPersistedGrantDbMigration : Migration
     {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                "DeviceCodes",
+                "IdentityOperational");
+
+            migrationBuilder.DropTable(
+                "PersistedGrants",
+                "IdentityOperational");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "IdentityOperational");
+                "IdentityOperational");
 
             migrationBuilder.CreateTable(
-                name: "DeviceCodes",
+                "DeviceCodes",
                 schema: "IdentityOperational",
                 columns: table => new
                 {
-                    UserCode = table.Column<string>(maxLength: 200, nullable: false),
-                    DeviceCode = table.Column<string>(maxLength: 200, nullable: false),
+                    UserCode = table.Column<string>(maxLength: 200),
+                    DeviceCode = table.Column<string>(maxLength: 200),
                     SubjectId = table.Column<string>(maxLength: 200, nullable: true),
-                    ClientId = table.Column<string>(maxLength: 200, nullable: false),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    Expiration = table.Column<DateTime>(nullable: false),
-                    Data = table.Column<string>(maxLength: 50000, nullable: false)
+                    ClientId = table.Column<string>(maxLength: 200),
+                    CreationTime = table.Column<DateTime>(),
+                    Expiration = table.Column<DateTime>(),
+                    Data = table.Column<string>(maxLength: 50000)
                 },
                 constraints: table =>
                 {
@@ -29,17 +40,17 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAcces
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersistedGrants",
+                "PersistedGrants",
                 schema: "IdentityOperational",
                 columns: table => new
                 {
-                    Key = table.Column<string>(maxLength: 200, nullable: false),
-                    Type = table.Column<string>(maxLength: 50, nullable: false),
+                    Key = table.Column<string>(maxLength: 200),
+                    Type = table.Column<string>(maxLength: 50),
                     SubjectId = table.Column<string>(maxLength: 200, nullable: true),
-                    ClientId = table.Column<string>(maxLength: 200, nullable: false),
-                    CreationTime = table.Column<DateTime>(nullable: false),
+                    ClientId = table.Column<string>(maxLength: 200),
+                    CreationTime = table.Column<DateTime>(),
                     Expiration = table.Column<DateTime>(nullable: true),
-                    Data = table.Column<string>(maxLength: 50000, nullable: false)
+                    Data = table.Column<string>(maxLength: 50000)
                 },
                 constraints: table =>
                 {
@@ -47,40 +58,29 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAcces
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeviceCodes_DeviceCode",
+                "IX_DeviceCodes_DeviceCode",
                 schema: "IdentityOperational",
                 table: "DeviceCodes",
                 column: "DeviceCode",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeviceCodes_Expiration",
+                "IX_DeviceCodes_Expiration",
                 schema: "IdentityOperational",
                 table: "DeviceCodes",
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersistedGrants_Expiration",
+                "IX_PersistedGrants_Expiration",
                 schema: "IdentityOperational",
                 table: "PersistedGrants",
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersistedGrants_SubjectId_ClientId_Type",
+                "IX_PersistedGrants_SubjectId_ClientId_Type",
                 schema: "IdentityOperational",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "ClientId", "Type" });
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "DeviceCodes",
-                schema: "IdentityOperational");
-
-            migrationBuilder.DropTable(
-                name: "PersistedGrants",
-                schema: "IdentityOperational");
         }
     }
 }

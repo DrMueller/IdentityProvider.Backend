@@ -1,5 +1,4 @@
-﻿using System;
-using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Services;
+﻿using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Services;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
 

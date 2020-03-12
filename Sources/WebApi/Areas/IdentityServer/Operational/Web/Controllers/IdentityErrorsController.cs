@@ -22,10 +22,10 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.Web.Contr
             _environment = environment;
         }
 
-        [HttpGet("{errorId}")]
-        public async Task<ActionResult<IdentityErrorDto>> GetErrorAsync([FromRoute] string errorId)
+        [HttpPost]
+        public async Task<ActionResult<IdentityErrorDto>> GetErrorAsync([FromBody] IdentityErrorRequestDto errorRequest)
         {
-            var message = await _interaction.GetErrorContextAsync(errorId);
+            var message = await _interaction.GetErrorContextAsync(errorRequest.ErrorId);
             IdentityErrorDto dto;
 
             if (message != null)
