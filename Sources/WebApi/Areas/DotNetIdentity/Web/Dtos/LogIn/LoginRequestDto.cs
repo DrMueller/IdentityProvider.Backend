@@ -1,4 +1,4 @@
-﻿namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos
+﻿namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.LogIn
 {
     public class LoginRequestDto
     {

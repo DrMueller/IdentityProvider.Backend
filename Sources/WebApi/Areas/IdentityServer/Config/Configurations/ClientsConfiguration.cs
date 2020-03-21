@@ -23,8 +23,10 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                 new Client
                 {
                     ClientId = "AngularClient",
+                    ClientName = "Fun Angular Client",
                     AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
+                    AllowRememberConsent = true,
+                    RequireConsent = true,
                     RequirePkce = true,
                     RequireClientSecret = false,
                     RedirectUris =
@@ -41,7 +43,8 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "api.write"
+                        "api.write",
+                        "api.read"
                     },
                     AllowedCorsOrigins = new List<string>
                     {

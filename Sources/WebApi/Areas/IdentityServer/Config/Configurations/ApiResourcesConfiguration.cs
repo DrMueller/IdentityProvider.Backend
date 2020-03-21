@@ -16,12 +16,18 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                         new Scope
                         {
                             Name = "api.read",
-                            DisplayName = "Read only access to the API"
+                            DisplayName = "Read only access to the API",
+                            Description = "A read only access Scope",
+                            Required = true,
+                            Emphasize = false
                         },
                         new Scope
                         {
                             Name = "api.write",
-                            DisplayName = "Full access to the API"
+                            DisplayName = "Full access to the API",
+                            Description = "A full access Scope",
+                            Required = false,
+                            Emphasize = true
                         }
                     }
                 }

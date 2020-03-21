@@ -15,5 +15,8 @@ IdentityServer4
 
 - Consent
 - WebAPI trennen
-- Authentication Result
 - Client trennen
+- LogOut --> Testen
+- Login darf nicht OIDC library verwenden
+- Zertifikate
+- Consent abgelehnt Workflow

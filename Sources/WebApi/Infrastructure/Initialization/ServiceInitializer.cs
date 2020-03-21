@@ -88,6 +88,7 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                         options.Events.RaiseSuccessEvents = true;
                         options.UserInteraction.LoginUrl = "http://localhost:4200/account/login";
                         options.UserInteraction.ErrorUrl = "http://localhost:4200/identity-errors/error-display";
+                        options.UserInteraction.ConsentUrl = "http://localhost:4200/account/consent";
                     })
                 .AddConfigurationStore(opt => ConfigStoreConfiguration.Configure(opt, connectionString))
                 .AddOperationalStore<PersistedGrantDbContext>(opt => OperationalStoreConfiguration.Configure(opt, connectionString))
