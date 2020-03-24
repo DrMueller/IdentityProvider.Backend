@@ -20,3 +20,4 @@ IdentityServer4
 - Login darf nicht OIDC library verwenden
 - Zertifikate
 - Consent abgelehnt Workflow
+- Redirect Page von MVC Vorlage verwenden?

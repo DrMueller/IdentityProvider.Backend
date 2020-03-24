@@ -10,6 +10,6 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.Consents
         public List<string> ConsentedScopeNames { get; set; }
         public bool RememberConsent { get; set; }
         public string ReturnUrl { get; set; }
-        public bool ConsentAccepted { get; set; }
+        public bool ConsentWasAccepted { get; set; }
     }
 }

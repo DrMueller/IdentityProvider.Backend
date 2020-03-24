@@ -1,9 +1,10 @@
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Mmu.IdentityProvider.WebApi
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -13,6 +14,7 @@ namespace Mmu.IdentityProvider.WebApi
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
+                .UseLamar()
                 .ConfigureWebHostDefaults(
                     webBuilder =>
                     {

@@ -1,7 +1,7 @@
+using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Mmu.IdentityProvider.WebApi.Infrastructure.Initialization;
 
 namespace Mmu.IdentityProvider.WebApi
@@ -20,7 +20,7 @@ namespace Mmu.IdentityProvider.WebApi
             AppInitializer.Initialize(app, env);
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(ServiceRegistry services)
         {
             ServiceInitializer.Initialize(services, Configuration);
         }

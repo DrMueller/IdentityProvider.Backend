@@ -1,5 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using AutoMapper;
 using IdentityServer4.EntityFramework.DbContexts;
+using Lamar;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -16,7 +19,7 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
 {
     public static class ServiceInitializer
     {
-        public static void Initialize(IServiceCollection services, IConfiguration config)
+        public static void Initialize(ServiceRegistry services, IConfiguration config)
         {
             InitializeCors(services);
 
@@ -25,11 +28,12 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
             InitializeAspNetIdentity(services, connectionString);
             InitializeIdentityServer(services, connectionString);
             InitializeIdentityClient(services);
+            InitializeAutoMapper(services);
 
             services.AddControllers();
         }
 
-        private static void InitializeIdentityClient(IServiceCollection services)
+        private static void InitializeIdentityClient(ServiceRegistry services)
         {
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
@@ -58,6 +62,13 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                         options.RequireHttpsMetadata = false;
                         options.ApiName = "CoolWebApi";
                     });
+
+            services.Scan(
+                s =>
+                {
+                    s.TheCallingAssembly();
+                    s.WithDefaultConventions();
+                });
         }
 
         private static void InitializeAspNetIdentity(IServiceCollection services, string connectionString)
@@ -110,6 +121,23 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                                 .AllowAnyMethod()
                                 .AllowCredentials());
                 });
+        }
+
+        private static void InitializeAutoMapper(ServiceRegistry services)
+        {
+            var profileTypes = typeof(ServiceInitializer).Assembly.GetTypes().Where(t => typeof(Profile).IsAssignableFrom(t)).ToList();
+
+            var mapperConfiguration = new MapperConfiguration(
+                cfg =>
+                {
+                    foreach (var profileType in profileTypes)
+                    {
+                        cfg.AddProfile(profileType);
+                    }
+                });
+
+            var mapper = mapperConfiguration.CreateMapper();
+            services.For<IMapper>().Use(mapper);
         }
     }
 }

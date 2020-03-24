@@ -1,6 +1,6 @@
 ﻿namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.Consents
 {
-    public class ScopeConsentDto
+    public class ScopeToConsentDto
     {
         public string Description { get; set; }
         public string DisplayName { get; set; }
