@@ -36,7 +36,7 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Services.Implementati
             var context = await _interaction.GetAuthorizationContextAsync(relativeReturnPath);
             if (context == null)
             {
-                return ConsentRequestResult.CreateFailure("Invalid return URL");
+                return ConsentRequestResult.CreateFailure("");
             }
 
             var client = await _clientStore.FindEnabledClientByIdAsync(context.ClientId);

@@ -20,7 +20,7 @@ namespace Mmu.IdentityProvider.WebApi
             AppInitializer.Initialize(app, env);
         }
 
-        public void ConfigureServices(ServiceRegistry services)
+        public void ConfigureContainer(ServiceRegistry services)
         {
             ServiceInitializer.Initialize(services, Configuration);
         }

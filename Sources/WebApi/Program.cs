@@ -1,5 +1,6 @@
 using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Mmu.IdentityProvider.WebApi
@@ -19,7 +20,16 @@ namespace Mmu.IdentityProvider.WebApi
                     webBuilder =>
                     {
                         webBuilder.UseStartup<Startup>();
+
+                        webBuilder.ConfigureServices(
+                            services =>
+                            {
+                                // This is important, the call to AddControllers()
+                                // cannot be made before the usage of ConfigureWebHostDefaults
+                                services.AddControllers();
+                            });
                     });
         }
     }
 }
+

@@ -3,7 +3,6 @@ using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Models.Consents.Responses;
-using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.Consents;
 using Mmu.IdentityProvider.WebApi.Infrastructure.UrlAlignment.Services;
 
 namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Services.Implementation
@@ -45,8 +44,7 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Services.Implementati
             var consentResponse = MapToResponse(userAcceptance, client.AllowRememberConsent);
             await _interaction.GrantConsentAsync(context, consentResponse);
 
-            var processedConsent = new ProcessedConsent(userAcceptance.AbsoluteReturnPath);
-            return ProcessedConsentResult.CreateSuccess(processedConsent);
+            return ProcessedConsentResult.CreateSuccess(userAcceptance.AbsoluteReturnPath);
         }
 
         private static ConsentResponse MapToResponse(UserConsentAcceptance userAcceptance, bool allowRememberConsent)

@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Models;
+using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Services;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.Accounts;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Dtos.LogIn;
 using Mmu.IdentityProvider.WebApi.Infrastructure.UrlAlignment.Services;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers;
 
 namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Controllers
 {
@@ -20,6 +22,7 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Controllers
         private readonly IIdentityServerInteractionService _interaction;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUrlAligner _urlAligner;
+        private readonly ILoginService _logInService;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public AccountsController(
@@ -28,14 +31,15 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Controllers
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IResourceStore resourceStore,
-            IUrlAligner urlAligner)
+            IUrlAligner urlAligner,
+            ILoginService logInService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _interaction = interaction;
             _clientStore = clientStore;
-            _resourceStore = resourceStore;
             _urlAligner = urlAligner;
+            _logInService = logInService;
         }
 
         [HttpPost]
@@ -55,7 +59,19 @@ namespace Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<LoginResultDto>> LogInAsync([FromBody] LogInRequestDto dto)
         {
+            var loginRequest = new LogInRequest(
+                dto.UserName,
+                dto.Password,
+                dto.RememberLogin,
+                dto.ReturnUrl);
 
+            var loginResult = await _logInService.LogInAsync(loginRequest);
+
+            var resultDto = loginResult
+                .MapRight(f => LoginResultDto.CreateSuccess(f.ReturnPath))
+                .Reduce(f => LoginResultDto.CreateFailure(f.ErrorMessage));
+
+            return Ok(resultDto);
         }
 
         [HttpPost("LogOut")]
