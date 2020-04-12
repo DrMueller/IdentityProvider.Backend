@@ -97,9 +97,10 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                         options.Events.RaiseInformationEvents = true;
                         options.Events.RaiseFailureEvents = true;
                         options.Events.RaiseSuccessEvents = true;
-                        options.UserInteraction.LoginUrl = "http://localhost:4200/account/login";
+                        options.UserInteraction.LoginUrl = "http://localhost:4200/auth/login";
                         options.UserInteraction.ErrorUrl = "http://localhost:4200/identity-errors/error-display";
-                        options.UserInteraction.ConsentUrl = "http://localhost:4200/account/consent";
+                        options.UserInteraction.ConsentUrl = "http://localhost:4200/auth/consent";
+                        options.UserInteraction.LogoutUrl = "http://localhost:4200/auth/logout";
                     })
                 .AddConfigurationStore(opt => ConfigStoreConfiguration.Configure(opt, connectionString))
                 .AddOperationalStore<PersistedGrantDbContext>(opt => OperationalStoreConfiguration.Configure(opt, connectionString))
@@ -116,7 +117,7 @@ namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
                         "All",
                         builder =>
                             builder
-                                .WithOrigins("http://localhost:4200")
+                                .WithOrigins("http://localhost:4200", "http://localhost:4201")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials());

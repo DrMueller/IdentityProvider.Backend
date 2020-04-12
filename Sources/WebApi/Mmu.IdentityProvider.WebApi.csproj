@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="IdentityServer4" Version="3.1.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="3.0.2" />
     <PackageReference Include="IdentityServer4.EntityFramework.Storage" Version="3.0.2" />
@@ -25,9 +24,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.3.18" />
+    <PackageReference Include="Mmu.Mlh.WebUtilities" Version="1.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\DotNetIdentity\Models\Consents\Responses\ResponseResults\" />
+    <ProjectReference Include="..\..\..\..\..\..\External\IdentityServer4\src\IdentityServer4\src\IdentityServer4.csproj" />
   </ItemGroup>
 </Project>

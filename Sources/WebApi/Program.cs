@@ -32,4 +32,3 @@ namespace Mmu.IdentityProvider.WebApi
         }
     }
 }
-

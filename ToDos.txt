@@ -1,6 +1,3 @@
-- Abgeleitete DbContexts
-- SeedData ausgereifter machen
-
 - Dokumentieren: https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation
 
 - Dokumentieren: Templates
@@ -10,14 +7,12 @@ IdentityServer4
 - AuthorizeResponseGenerator
 - AuthorizeCallbackEndpoint
 
+- Clean up Identity Client Code
 
-# Code
+- IdentityApi erstellen
 
-- Consent
-- WebAPI trennen
-- Client trennen
-- LogOut --> Testen
-- Login darf nicht OIDC library verwenden
-- Zertifikate
-- Consent abgelehnt Workflow
-- Redirect Page von MVC Vorlage verwenden?
+
+- Create --> Login wirft Fehler
+
+
+- Remember Consent dokumentiern --> ???

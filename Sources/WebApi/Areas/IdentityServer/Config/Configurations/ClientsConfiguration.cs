@@ -31,11 +31,12 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                     RequireClientSecret = false,
                     RedirectUris =
                     {
-                        "http://localhost:4200/account/info"
+                        "http://localhost:4201/account/info",
+                        "http://localhost:4201/account/info"
                     },
                     PostLogoutRedirectUris =
                     {
-                        "http://localhost:4200/account/logout"
+                        "http://localhost:4201"
                     },
                     AllowAccessTokensViaBrowser = true,
                     AllowedScopes = new List<string>
@@ -48,10 +49,10 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://localhost:4200"
+                        "http://localhost:4200",
+                        "http://localhost:4201"
                     }
                 },
-
                 new Client
                 {
                     ClientId = "IdentityApi",

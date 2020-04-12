@@ -3,6 +3,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Mmu.IdentityProvider.WebApi.Areas.Common.DataAccess;
+using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity;
 
 namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Operational.DataAccess.DbContexts
 {

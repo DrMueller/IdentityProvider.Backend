@@ -1,18 +1,20 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Mmu.IdentityProvider.WebApi.Areas.DotNetIdentity.DataAccess.DbContexts;
 using Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.DataAccess;
+using Mmu.Mlh.WebUtilities.Areas.ExceptionHandling.Initialization;
 
 namespace Mmu.IdentityProvider.WebApi.Infrastructure.Initialization
 {
     public static class AppInitializer
     {
-        public static void Initialize(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Initialize(IApplicationBuilder app)
         {
             InitializeDatabases(app);
+
+            app.UseGlobalExceptionHandler();
             app.UseCors("All");
             app.UseRouting();
             app.UseAuthentication();

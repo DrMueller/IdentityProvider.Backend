@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,18 +9,20 @@ namespace Mmu.IdentityProvider.WebApi
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            AppInitializer.Initialize(app, env);
+            AppInitializer.Initialize(app);
         }
 
+        [UsedImplicitly]
         public void ConfigureContainer(ServiceRegistry services)
         {
             ServiceInitializer.Initialize(services, Configuration);
