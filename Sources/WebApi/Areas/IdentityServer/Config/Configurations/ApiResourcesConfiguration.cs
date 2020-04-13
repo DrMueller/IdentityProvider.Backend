@@ -10,7 +10,7 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
             {
                 new ApiResource
                 {
-                    Name = "CoolWebApi",
+                    Name = "IdentityClientWebApi",
                     Scopes =
                     {
                         new Scope

@@ -7,12 +7,3 @@ IdentityServer4
 - AuthorizeResponseGenerator
 - AuthorizeCallbackEndpoint
 
-- Clean up Identity Client Code
-
-- IdentityApi erstellen
-
-
-- Create --> Login wirft Fehler
-
-
-- Remember Consent dokumentiern --> ???

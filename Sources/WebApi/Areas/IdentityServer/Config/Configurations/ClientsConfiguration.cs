@@ -11,17 +11,6 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
             {
                 new Client
                 {
-                    RequireConsent = false,
-                    ClientId = "ConsoleClient",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api.write" }
-                },
-                new Client
-                {
                     ClientId = "AngularClient",
                     ClientName = "Fun Angular Client",
                     AllowedGrantTypes = GrantTypes.Code,
@@ -31,7 +20,6 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                     RequireClientSecret = false,
                     RedirectUris =
                     {
-                        "http://localhost:4201/account/info",
                         "http://localhost:4201/account/info"
                     },
                     PostLogoutRedirectUris =
@@ -49,23 +37,7 @@ namespace Mmu.IdentityProvider.WebApi.Areas.IdentityServer.Config.Configurations
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://localhost:4200",
                         "http://localhost:4201"
-                    }
-                },
-                new Client
-                {
-                    ClientId = "IdentityApi",
-                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
-                    RequireConsent = false,
-                    RequirePkce = false,
-                    RedirectUris = { "https://localhost:44339/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:44339/signout-callback-oidc" },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "api.write"
                     }
                 }
             };
